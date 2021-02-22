@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -28,5 +29,21 @@ class ProjectTest extends TestCase
         $this->assertDatabaseHas('projects', $projectAttrs);
 
         $this->get('/projects')->assertSee($projectAttrs['title']);
+    }
+
+    /** @test */
+    public function a_project_requires_a_title()
+    {
+        $projectAttrs = Project::factory()->raw(['title' => '']);
+
+        $this->post('/projects', $projectAttrs)->assertSessionHasErrors('title');
+    }
+
+    /** @test */
+    public function a_project_requires_a_description()
+    {
+        $projectAttrs = Project::factory()->raw(['description' => '']);
+
+        $this->post('/projects', $projectAttrs)->assertSessionHasErrors('description');
     }
 }
