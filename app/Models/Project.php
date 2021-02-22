@@ -19,4 +19,9 @@ class Project extends Model
         'title',
         'description',
     ];
+
+    public function path()
+    {
+        return "/projects/{$this->id}";
+    }
 }

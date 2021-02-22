@@ -4,12 +4,16 @@
 	<title></title>
 </head>
 <body>
-	<h1> 123 </h1>
+	<h1> List </h1>
 
 	<ul>
-			@foreach ($projects as $project)
-				<li> {{$project->title }} </li>
-			@endforeach
+			@forelse ($projects as $project)
+				<li> 
+					<a href = "{{ $project->path() }}"> {{$project->title }} </a>
+				</li>
+			@empty
+				<p> No </p>
+			@endforelse
 	</ul>
 </body>
 </html>
