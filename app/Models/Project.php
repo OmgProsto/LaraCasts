@@ -25,12 +25,21 @@ class Project extends Model
     {
         return "/projects/{$this->id}";
     }
-<<<<<<< HEAD
+
 
     public function owner()
     {
         return $this->belongsTo(User::class);
     } 
-=======
->>>>>>> 28c78127c2086fd60c006692250c29013194d3a3
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    } 
+
+    public function addTask($body)
+    {
+        return $this->tasks()->create(compact('body'));
+    } 
+
 }

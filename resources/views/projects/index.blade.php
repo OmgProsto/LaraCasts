@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<h1> List </h1>
+@extends ('layouts.app')
 
+@section('content')
+	<h1> List </h1>
+	<a href='/projects/create'>Create</a>
 	<ul>
 			@forelse ($projects as $project)
 				<li> 
@@ -15,5 +12,4 @@
 				<p> No </p>
 			@endforelse
 	</ul>
-</body>
-</html>
+@endsection
