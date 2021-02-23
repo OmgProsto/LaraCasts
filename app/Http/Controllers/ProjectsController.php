@@ -25,9 +25,7 @@ class ProjectsController extends Controller
         ]);
 
 
-        $attributes['owner_id'] = auth()->id();
-
-        // auth()->user()->projects()->create($attributes);
+        auth()->user()->projects()->create($attributes);
 
     	Project::create($attributes);
 
@@ -35,15 +33,16 @@ class ProjectsController extends Controller
     }
 
     public function show($project)
-    {   
-<<<<<<< HEAD
+    {  
+
         if(auth()->user()->isNot($project->owner)){
             abort(403);
         }
-=======
-        $project = Project::findOrFail($project);
->>>>>>> 28c78127c2086fd60c006692250c29013194d3a3
-
         return view('projects.show', compact('project'));
+    }
+
+    public function create($project)
+    {  
+        return view('projects.crate');
     }
 }
