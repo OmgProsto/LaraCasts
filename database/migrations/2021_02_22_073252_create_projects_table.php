@@ -7,17 +7,23 @@ use Illuminate\Support\Facades\Schema;
 class CreateProjectsTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title');
-            $table->string('description');
-            $table->timestamps();
+            $table->text('description');
+            $table->unsignedBigInteger('owner_id');
+            
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

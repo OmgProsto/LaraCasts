@@ -18,10 +18,19 @@ class Project extends Model
     protected $fillable = [
         'title',
         'description',
+        'owner_id'
     ];
 
     public function path()
     {
         return "/projects/{$this->id}";
     }
+<<<<<<< HEAD
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    } 
+=======
+>>>>>>> 28c78127c2086fd60c006692250c29013194d3a3
 }
